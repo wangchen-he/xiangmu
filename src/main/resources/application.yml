@@ -1,0 +1,126 @@
+#配置默认端口
+server:
+  port: 8080
+
+#日志配置
+# 不指定路径，在当前项目下生成 srpingboot.log
+# 指定路径，在路径下生成
+logging:
+  level:
+    #    root: debug
+    org.springframework.security: debug #打印security日志记录
+#  file:
+#    name: SrpingBoot.log
+
+#数据库连接 服务器
+spring:
+
+  datasource:
+    # mysql8.0以前使用com.mysql.jdbc.Driver   以后使用com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: dati
+    password: 123456
+    url: jdbc:mysql://106.52.174.153:3306/dati?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    type: com.alibaba.druid.pool.DruidDataSource
+    #    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #url: jdbc:mysql://47.99.241.244:3306/management?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    #    url: jdbc:mysql://localhost:3306/management?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
+
+    #    url: jdbc:sqlserver://210.76.9.56:1433;DatabaseName=OnlineExam2021
+    #    username: sa
+
+
+    #password: ziyiedl
+    #    password: pmccsoft@3567287
+
+    # druid配置
+    druid:
+      initial-size: 5  # 初始化大小
+      min-idle: 5  # 最小
+      max-active: 1000  # 最大
+      max-wait: 60000  # 连接超时时间
+      time-between-eviction-runs-millis: 60000 # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      min-evictable-idle-time-millis: 300000  # 指定一个空闲连接最少空闲多久后可被清除，单位是毫秒
+      #mysql 配置  DUAL表为MySQL中的虚拟表，它的作用为了满足select ...from .....;而SQL service中不存在
+      #validation-query: SELECT 1 FROM DUAL
+      #SqlServer 配置
+      validation-query: SELECT 1
+      test-while-idle: true  # 当连接空闲时，是否执行连接测试
+      test-on-borrow: false  # 当从连接池借用连接时，是否测试该连接
+      test-on-return: false  # 在连接归还到连接池时是否测试该连接
+      filters: wall,stat  # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      max-open-prepared-statements: 20
+      connection-properties: druid.stat.slowSqlMillis=200;druid.stat.logSlowSql=true;configuration.decrypt=true
+      #####druid监控配置
+      ## WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+      web-stat-filter:
+        enabled: true #是否启用StatFilter默认值true
+        url-pattern: /*
+        exclusions: /druid/*,*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico
+      #        session-stat-enable: true #session统计功能
+      #        session-stat-max-count: 10 #最大session数
+      ## StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: admin
+  # JPA 相关配置
+  jpa:
+    hibernate:
+      ddl-auto: none  # update  更新 或 create 创建数据表   none 不操作
+    show-sql: true  #控制台显示SQL
+    open-in-view: false
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    #database-platform: org.hibernate.dialect.SQLServer2008Dialect
+    properties:
+      hibernate.current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+  # 允许预检请求
+  mvc:
+    dispatch-options-request: true
+    ##########################################
+    ####yan   url路径
+    static-path-pattern: /image/**
+
+  ####yan    绑定的储存地址
+  resources:
+    static-locations: file:E:/upImages/noticethumbnail
+    ################################################
+  #上传限制文件大小
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 50MB
+
+
+  #system自定义配置项
+  jackson:
+    date-format=yyyy-MM-dd HH:mm:ss
+
+system:
+  path:
+    #文件上传根目录 设置
+    upload: E://upFiles
+    #webapp文件路径
+    webapp: E://webapp
+
+    #图片上传路径
+    uploadImage: E:/upImages/noticethumbnail
+
+    #图片真实路径
+    imageRealPath: E:/develoment/tomcat/apache-tomcat-8.5.63/webapps/upImages/noticethumbnail
+    #imageRealPath: E:\apache-tomcat-8.5.33-server\webapps\upImages\noticethumbnail
+
+ureport:
+  prefix: sqlserver-
+  disabled: false
+  fileStoreDir: E:/ureportfiles
+  #fileStoreDir: /WEB-INF/ureportfiles/
+  #ureport配置
+  disableHttpSessionReportCache: false
+  # 将ureport.disableFileProvider改成true,即可禁用默认提供的文件存储机制
+  disableFileProvider: true
+  debug: true
