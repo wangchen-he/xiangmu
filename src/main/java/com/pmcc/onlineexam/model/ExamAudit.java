@@ -30,7 +30,7 @@ public class ExamAudit extends CommonEntity {
     private String remark;//备注
     private String image_id;//图片地址
 
-    private String dict;  //职称
+    private String dict_id;  //职称
 
     private String created_by; //创建人
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -130,12 +130,12 @@ public class ExamAudit extends CommonEntity {
         this.image_id = image_id;
     }
 
-    public String getDict() {
-        return dict;
+    public String getDict_id() {
+        return dict_id;
     }
 
-    public void setDict(String dict) {
-        this.dict = dict;
+    public void setDict_id(String dict_id) {
+        this.dict_id = dict_id;
     }
 
     public String getCreated_by() {
@@ -170,4 +170,24 @@ public class ExamAudit extends CommonEntity {
         this.updated_time = updated_time;
     }
 
+    @Override
+    public String toString() {
+        return "ExamAudit{" +
+                "state='" + state + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", id_card='" + id_card + '\'' +
+                ", contact='" + contact + '\'' +
+                ", department=" + department +
+                ", depid='" + depid + '\'' +
+                ", sex='" + sex + '\'' +
+                ", remark='" + remark + '\'' +
+                ", image_id='" + image_id + '\'' +
+                ", dict_id='" + dict_id + '\'' +
+                ", created_by='" + created_by + '\'' +
+                ", created_time=" + created_time +
+                ", updated_by='" + updated_by + '\'' +
+                ", updated_time=" + updated_time +
+                '}';
+    }
 }

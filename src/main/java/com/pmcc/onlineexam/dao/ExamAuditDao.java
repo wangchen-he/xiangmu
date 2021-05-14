@@ -18,7 +18,7 @@ import java.util.List;
 public class ExamAuditDao extends AbstractBaseDao<ExamAudit, String> {
 
        public void userauditpass(String data){
-           Query addDictInfo= entityManager.createNativeQuery("update exam_audit set state='1' where oid in ("+data+")");
+           Query addDictInfo= entityManager.createNativeQuery("update exam_user set state='1' where oid in ("+data+")");
            addDictInfo.executeUpdate();
 
 //           Query addDictInfo = entityManager.createNativeQuery(
@@ -28,7 +28,7 @@ public class ExamAuditDao extends AbstractBaseDao<ExamAudit, String> {
 //           resultList.forEach(System.out::println);
        }
        public void userdictno(String data ){
-           Query addDictInfo= entityManager.createNativeQuery("update exam_audit set state='2' where oid in ("+data+")");
+           Query addDictInfo= entityManager.createNativeQuery("update exam_user set state='2' where oid in ("+data+")");
            addDictInfo.executeUpdate();
        }
 

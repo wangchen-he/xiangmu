@@ -88,6 +88,7 @@ public class SysUserDao extends AbstractBaseDao<SysUser, String> {
         return sysUser;
     }
 
+
     public List<SysUser> getByDid(String deptID){
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<SysUser> criteria = cb.createQuery(SysUser.class);
