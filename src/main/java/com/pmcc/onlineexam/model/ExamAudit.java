@@ -15,7 +15,7 @@ import java.util.Date;
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 
 public class ExamAudit extends CommonEntity {
-    private String  state; //审核状态
+    private int  state; //审核状态
     private String name;
     private int age;
     private String id_card;
@@ -31,16 +31,26 @@ public class ExamAudit extends CommonEntity {
     private String image_id;//图片地址
 
     private String dict_id;  //职称
+    private int user_status;
+
+    @Column(name = "user_status" )
+    public int getUser_status() {
+        return user_status;
+    }
+
+    public void setUser_status(int user_status) {
+        this.user_status = user_status;
+    }
 
     private String created_by; //创建人
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8:00")
     private Date created_time; //
 
 
     private String updated_by;//更新人
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8:00")
     private Date updated_time;//更新时间
 
 
@@ -62,11 +72,11 @@ public class ExamAudit extends CommonEntity {
     }
 
     @Column(name = "state")
-    public String getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(int state) {
         this.state = state;
     }
     @Column(name = "name")

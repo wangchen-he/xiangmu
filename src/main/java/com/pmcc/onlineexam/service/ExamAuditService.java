@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import java.util.List;
+
 @Service
 public class ExamAuditService  extends CommonServiceImpl<ExamAudit,String> {
     @Autowired
@@ -30,6 +32,14 @@ public class ExamAuditService  extends CommonServiceImpl<ExamAudit,String> {
 
     public void userdictno(String data){
         examAuditDao.userdictno(data);
+    }
+
+    public void deleteid(String id){
+        examAuditDao.deleteid(id);
+    }
+
+    public List<ExamAudit> getall(){
+      return   examAuditDao.getall();
     }
 
     public SysUser getUsername(){

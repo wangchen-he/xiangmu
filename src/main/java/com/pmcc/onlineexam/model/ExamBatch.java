@@ -24,42 +24,43 @@ public class ExamBatch extends CommonEntity {
 
     private String name;
 
-    private Date beginDate;
+    private String years;
 
-    private String contractPerson;
+    private Date testDate;
 
-    private String contractMethod;
+    private String workType;
 
-    private String remark;
+    private String sessionType;
 
-    private String delFlag;
+    private Date beginTime;
 
-    private int isScoreView;
+    private Date endTime;
 
-//    private String scoreView;
+    private String contactPerson;
 
-    private int sessionState;
+    private String contact;
 
-    private int paperGenerate;
 
-    private int paperConfigFlag;
+    private String email;
 
-    //private String paperview;
+    private String createdBy;
 
-    private String ticketFlag;
+    private Date createdTime;
 
-    private String examAddress;
+    private String updatedBy;
 
-//    private String ticketFlagShow;
+    private Date updatedTime;
 
-    @Column(name = "exam_address")
-    public String getExamAddress() {
-        return this.examAddress;
-    }
+    private String memo;
 
-    public void setExamAddress(String examAddress) {
-        this.examAddress = examAddress;
-    }
+//    @Column(name = "exam_address")
+//    public String getExamAddress() {
+//        return this.examAddress;
+//    }
+//
+//    public void setExamAddress(String examAddress) {
+//        this.examAddress = examAddress;
+//    }
 
 //    public String getTicketFlagShow() {
 //        if ("0".equals(this.ticketFlag)) {
@@ -78,100 +79,186 @@ public class ExamBatch extends CommonEntity {
 //        this.ticketFlagShow = ticketFlagShow;
 //    }
 
-    @Column(name = "ticket_flag")
-    public String getTicketFlag() {
-        return this.ticketFlag;
-    }
-
-    public void setTicketFlag(String ticketFlag) {
-        this.ticketFlag = ticketFlag;
-    }
+//    @Column(name = "ticket_flag")
+//    public String getTicketFlag() {
+//        return this.ticketFlag;
+//    }
+//
+//    public void setTicketFlag(String ticketFlag) {
+//        this.ticketFlag = ticketFlag;
+//    }
 
     @Column(name = "name")
     public String getName() {
         return this.name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    @Column(name = "contract_person")
-    public String getContractPerson() {
-        return this.contractPerson;
+    @Column(name = "years")
+    public String getYears() {
+        return this.years;
     }
-
-    public void setContractPerson(String contractPerson) {
-        this.contractPerson = contractPerson;
-    }
-
-    @Column(name = "contract_method")
-    public String getContractMethod() {
-        return this.contractMethod;
-    }
-
-    public void setContractMethod(String contractMethod) {
-        this.contractMethod = contractMethod;
-    }
-
-    @Column(name = "remark")
-    public String getRemark() {
-        return this.remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public static long getSerialversionuid() {
-        return 1L;
-    }
-
-    @Column(name = "del_flag")
-    public String getDelFlag() {
-        return this.delFlag;
-    }
-
-    public void setDelFlag(String delFlag) {
-        this.delFlag = delFlag;
-    }
-
-    @Column(name = "session_state")
-    public int getSessionState() {
-        return this.sessionState;
-    }
-
-    public void setSessionState(int sessionState) {
-        this.sessionState = sessionState;
+    public void setYears(String years) {
+        this.years = years;
     }
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    @Column(name = "begin_date")
-    public Date getBeginDate() {
-        return this.beginDate;
+    @Column(name = "test_date")
+    public Date getTestDate() {
+        return this.testDate;
+    }
+    public void setTestDate(Date testDate) {
+        this.testDate = testDate;
     }
 
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
+    @Column(name = "work_type")
+    public String getWorkType() {
+        return this.workType;
+    }
+    public void setWorkType(String workType) {
+        this.workType = workType;
     }
 
-    @Column(name = "paper_generate")
-    public int getPaperGenerate() {
-        return this.paperGenerate;
+    @Column(name = "session_Type")
+    public String getSessionType() {
+        return this.sessionType;
+    }
+    public void setSessionType(String sessionType) {
+        this.sessionType = sessionType;
     }
 
-    public void setPaperGenerate(int paperGenerate) {
-        this.paperGenerate = paperGenerate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @Column(name = "begin_time")
+    public Date getBeginTime() {
+        return this.beginTime;
+    }
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
     }
 
-    @Column(name = "paper_config_flag")
-    public int getPaperConfigFlag() {
-        return this.paperConfigFlag;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @Column(name = "end_time")
+    public Date getEndTime() {
+        return this.endTime;
+    }
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public void setPaperConfigFlag(int paperConfigFlag) {
-        this.paperConfigFlag = paperConfigFlag;
+    @Column(name = "contact_person")
+    public String getContactPerson() {
+        return this.contactPerson;
     }
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
+    @Column(name = "contact")
+    public String getContact() {
+        return this.contact;
+    }
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    @Column(name = "email")
+    public String getEmail() {
+        return this.email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(name = "created_by")
+    public String getCreatedBy() {
+        return this.createdBy;
+    }
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @Column(name = "created_time")
+    public Date getCreatedTime() {
+        return this.createdTime;
+    }
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    @Column(name = "updated_by")
+    public String getUpdatedBy() { return this.updatedBy; }
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+        @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @Column(name = "updated_time")
+    public Date getUpdatedTime() {
+        return this.updatedTime;
+    }
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    @Column(name = "memo")
+    public String getMemo() {
+        return this.memo;
+    }
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+
+//    public static long getSerialversionuid() {
+//        return 1L;
+//    }
+
+
+
+
+
+
+
+//    @Column(name = "del_flag")
+//    public String getDelFlag() {
+//        return this.delFlag;
+//    }
+//
+//    public void setDelFlag(String delFlag) {
+//        this.delFlag = delFlag;
+//    }
+//
+//    @Column(name = "session_state")
+//    public int getSessionState() {
+//        return this.sessionState;
+//    }
+//
+//    public void setSessionState(int sessionState) {
+//        this.sessionState = sessionState;
+//    }
+//
+//
+//    @Column(name = "paper_generate")
+//    public int getPaperGenerate() {
+//        return this.paperGenerate;
+//    }
+//
+//    public void setPaperGenerate(int paperGenerate) {
+//        this.paperGenerate = paperGenerate;
+//    }
+//
+//    @Column(name = "paper_config_flag")
+//    public int getPaperConfigFlag() {
+//        return this.paperConfigFlag;
+//    }
+//
+//    public void setPaperConfigFlag(int paperConfigFlag) {
+//        this.paperConfigFlag = paperConfigFlag;
+//    }
 
 //    public String getPaperview() {
 //        if (this.paperConfigFlag==0) {
@@ -189,14 +276,23 @@ public class ExamBatch extends CommonEntity {
 //    public void setPaperview(String paperview) {
 //        this.paperview = paperview;
 //    }
-
-    public int getIsScoreView() {
-        return this.isScoreView;
-    }
-
-    public void setIsScoreView(int isScoreView) {
-        this.isScoreView = isScoreView;
-    }
+//
+//    public int getIsScoreView() {
+//        return this.isScoreView;
+//    }
+//
+//    public void setIsScoreView(int isScoreView) {
+//        this.isScoreView = isScoreView;
+//    }
+//
+//    @Column(name = "session_type")
+//    public String getSessionType() {
+//        return this.sessionType;
+//    }
+//
+//    public void setSessionType(String sessionType) {
+//        this.sessionType = sessionType;
+//    }
 
 //    public String getScoreView() {
 //        return this.scoreView;

@@ -169,7 +169,7 @@ public class SysDepService extends CommonServiceImpl<SysDep, String> {
         if (rootList.size() > 0) {
             treeJson.append(getTreeNode(rootList)); //加载所有机构树
         }
-        System.out.println(treeJson.toString());
+       // System.out.println(treeJson.toString());
         return treeJson.toString();
     }
 

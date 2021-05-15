@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 @Entity
 @Table(name = "exam_user_picture")
@@ -21,13 +22,13 @@ public class ExamUserPicture extends CommonEntity {
 
     private String created_by;//创建人
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date created_time;//创建时间
 
 
     private String updated_by;//更新人
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date updated_time;//更新时间
 
     private  String memo;//备注

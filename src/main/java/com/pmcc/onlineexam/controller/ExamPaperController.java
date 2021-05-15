@@ -65,11 +65,11 @@ public class ExamPaperController{
             ExamBatch examBatch = new ExamBatch();
             examBatch.setId(examPaper.getExamBatch());
             examBatch=this.examBatchService.findById(examBatch.getId());
-            if (examPaper.getTotalScore().doubleValue()>0.0D){
-                examBatch.setPaperConfigFlag(1);
-            }else{
-                examBatch.setPaperConfigFlag(0);
-            }
+//            if (examPaper.getTotalScore().doubleValue()>0.0D){
+//                examBatch.setPaperConfigFlag(1);
+//            }else{
+//                examBatch.setPaperConfigFlag(0);
+//            }
             this.examBatchService.save(examBatch);
             this.examPaperService.update(examPaper);
         }

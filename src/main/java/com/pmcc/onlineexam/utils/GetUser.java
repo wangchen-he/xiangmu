@@ -25,4 +25,20 @@ public class GetUser {
         }
         return user;
     }
+   public static String getStringli(String data){
+        String[] dl=data.split(",");
+        String val="";
+        int inum=0;
+        for (String i:dl){
+            if(inum==0){
+                val=val+"\""+i+"\"";
+                inum++;
+            }
+            else {
+                val=val+",\""+i+"\"";
+            }
+
+        }
+        return val;
+    }
 }
