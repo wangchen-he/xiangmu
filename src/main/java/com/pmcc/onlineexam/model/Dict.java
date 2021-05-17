@@ -8,6 +8,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Date;
 
 
 /**
@@ -23,90 +24,114 @@ import javax.persistence.Table;
 
 public class Dict extends CommonEntity {
 
+    private  String name;
+    private String value;
+    private String type;
+    private int sort;
+    private int status;
+    private int del_flag;
+    private String created_by;
+    private Date created_time;
 
-    private String dictname;        //工种全称
+    private String updated_by;
+    private Date updated_time;
 
-    private String dictid;          //工种id
+    private  String memo; //备注
+    private int date;//所属年份
 
-    private String dicttype;        //工种的年份
-
-    private String parentid;        //工种上级文件夹id
-
-    private int rank;            //工等级
-
-    private int sortno;          //工种排名
-
-//    private String py;
-
-    private int status;          //当前使用状态  1正常、0冻结、2删除
-
-    @Column(name = "dictname")
-    public String getDictName() {
-        return this.dictname;
+    public String getName() {
+        return name;
     }
 
-    public void setDictName(String dictname) {
-        this.dictname = dictname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    @Column(name = "dictid")
-    public String getDictId() {
-        return this.dictid;
+    public String getValue() {
+        return value;
     }
 
-    public void setDictId(String dictid) {
-        this.dictid = dictid;
+    public void setValue(String value) {
+        this.value = value;
     }
 
-    @Column(name = "dicttype")
-    public String getDictType() {
-        return this.dicttype;
+    public String getType() {
+        return type;
     }
 
-    public void setDictType(String dicttype) {
-        this.dicttype = dicttype;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    @Column(name = "parentid")
-    public String getParentId() {
-        return this.parentid;
+    public int getSort() {
+        return sort;
     }
 
-    public void setParentId(String parentid) {
-        this.parentid = parentid;
+    public void setSort(int sort) {
+        this.sort = sort;
     }
 
-
-    @Column(name = "rank")
-    public int getRank() {
-        return this.rank;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-
-    @Column(name = "sortno")
-    public int getSortNo() {
-        return this.sortno;
-    }
-
-    public void setSortNo(int sortno) {
-        this.sortno = sortno;
-    }
-
-
-    @Column(name = "status")
     public int getStatus() {
-        return this.status;
+        return status;
     }
 
     public void setStatus(int status) {
         this.status = status;
     }
 
+    public int getDel_flag() {
+        return del_flag;
+    }
 
+    public void setDel_flag(int del_flag) {
+        this.del_flag = del_flag;
+    }
 
+    public String getCreated_by() {
+        return created_by;
+    }
+
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
+    }
+
+    public Date getCreated_time() {
+        return created_time;
+    }
+
+    public void setCreated_time(Date created_time) {
+        this.created_time = created_time;
+    }
+
+    public String getUpdated_by() {
+        return updated_by;
+    }
+
+    public void setUpdated_by(String updated_by) {
+        this.updated_by = updated_by;
+    }
+
+    public Date getUpdated_time() {
+        return updated_time;
+    }
+
+    public void setUpdated_time(Date updated_time) {
+        this.updated_time = updated_time;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
 }

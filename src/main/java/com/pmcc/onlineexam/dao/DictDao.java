@@ -3,9 +3,13 @@ package com.pmcc.onlineexam.dao;
 import com.pmcc.core.common.dao.AbstractBaseDao;
 import com.pmcc.onlineexam.entity.PageDto;
 import com.pmcc.onlineexam.model.Dict;
+import com.pmcc.onlineexam.model.Person;
+import com.pmcc.system.common.CommonCode;
 import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 
@@ -19,8 +23,17 @@ import java.util.List;
 @Repository
 public class DictDao extends AbstractBaseDao<Dict, String> {
 
+  public List<Dict> getall(){
+      CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+      CriteriaQuery<Dict> criteria = cb.createQuery(Dict.class);
+      Root<Dict> contactRoot = criteria.from(Dict.class);
+      criteria.select(contactRoot);
 
-    /**
+      criteria.where(cb.equal(contactRoot.get("status"), CommonCode.STATUS_NORMAL));
+
+      List<Dict> resultList = getSession().createQuery(criteria).getResultList();
+      return resultList;
+  }    /**
      *
      * @Description ：查询exam_dict中的工种数据
      * @param pageDto

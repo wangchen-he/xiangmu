@@ -9,9 +9,12 @@ import com.pmcc.onlineexam.service.ExamAuditService;
 import com.pmcc.onlineexam.service.ExamUserPictureService;
 import com.pmcc.onlineexam.utils.GetUser;
 import com.pmcc.system.common.CommonCode;
+import com.pmcc.system.model.SysDepRelation;
 import com.pmcc.system.model.SysDictionaries;
 import com.pmcc.system.model.SysUser;
 import com.pmcc.system.oss.WebMvcConfiguration;
+import com.pmcc.system.service.SysDepRelationService;
+import com.pmcc.system.service.SysDepService;
 import com.pmcc.system.service.SysDictionariesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -182,8 +185,40 @@ public class ExamAuditController {
         System.out.println(map.toString());
         return "ok";
     }
+    //更新用户
+    @PostMapping("/updateuser")
+    public  String updateuser(@RequestBody LinkedHashMap<String,String> map){
+        String data=JSON.toJSONString(map);
+        ExamAudit userdata=JSON.parseObject(data,ExamAudit.class);
 
-/**
+
+        ExamAudit loaduser= auditService.findById(map.get("id"));
+
+        userdata.setId(loaduser.getId());
+        userdata.setState(loaduser.getState());
+        userdata.setCreated_by(loaduser.getCreated_by());
+        userdata.setCreated_time(loaduser.getCreated_time());
+        userdata.setUser_status(loaduser.getUser_status());
+        SysUser sysUser=getUser.getUsername();
+        userdata.setUpdated_by(sysUser.getId());
+        userdata.setUpdated_time(new Date());
+
+        auditService.update(userdata);
+        return "ok";
+    }
+
+    @Autowired
+    SysDepService depService;
+    @Autowired
+    SysDepRelationService relationService;
+
+@GetMapping("/getTree")
+    public  String getTree(){
+
+
+    System.out.println("00000000000000000001");
+      return   depService.getTreeStr("00000000000000000001");
+}/**
 
     //文件上传：流
     @RequestMapping("/uploadtext")

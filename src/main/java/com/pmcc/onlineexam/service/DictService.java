@@ -32,6 +32,11 @@ public class DictService extends CommonServiceImpl<Dict, String> {
     }
 
 
+    public  List<Dict> getall(){
+        return  dictDao.getall();
+
+    }
+
     /**
      *
      * @Description ：获取当前页里的工种数据
