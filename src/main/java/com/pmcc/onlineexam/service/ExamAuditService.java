@@ -42,6 +42,9 @@ public class ExamAuditService  extends CommonServiceImpl<ExamAudit,String> {
       return   examAuditDao.getall();
     }
 
+    public List<ExamAudit> getfild(String id){
+        return   examAuditDao.getfild(id);
+    }
     public SysUser getUsername(){
         SysUser user= null;
         //当前认证通过的用户身份

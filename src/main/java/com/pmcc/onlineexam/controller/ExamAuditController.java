@@ -39,7 +39,13 @@ public class ExamAuditController {
     ExamAuditService auditService;
     @Autowired
     ExamUserPictureService examUserPictureService;
-
+/**
+ * @author:
+ * @description: TODO
+ * @date: 2021-05-17 16:39
+ * @param null
+ * @return
+ */
     @Autowired
     GetUser getUser;
     @RequestMapping("/getua")
@@ -53,10 +59,16 @@ public class ExamAuditController {
         }
        Map<String, Object> map=new HashMap<String,Object>();
         map.put("depid",data);
-        List<ExamAudit> all=auditService.findByField(map);
+        List<ExamAudit> all=auditService.getfild(data);
        return all;
     }
-
+/**
+ * @author:
+ * @description: TODO
+ * @date: 2021-05-17 16:39
+ * @param
+ * @return
+ */
     @PostMapping("/userdictpass")
     public  String userdictpass(@RequestBody LinkedHashMap<String, String> map) {
         String da=map.get("data");
@@ -64,7 +76,13 @@ public class ExamAuditController {
 
         return "A";
     }
-
+/**
+ * @author:
+ * @description: TODO
+ * @date: 2021-05-17 16:39
+ * @param
+ * @return
+ */
     @PostMapping("/userdictno")
     public  String userdictno(@RequestBody LinkedHashMap<String, String> map){
         String data=map.get("data");
@@ -73,13 +91,26 @@ public class ExamAuditController {
         return "1";
 
     }
-
+/**
+ * @author:
+ * @description: TODO
+ * @date: 2021-05-17 16:39
+ * @param
+ * @return
+ */
    @GetMapping("/deleteuser")
    public String deleteuser(String id){
        System.out.println(id);
         auditService.deleteid(id);
         return "ok";
    }
+   /**
+    * @author:
+    * @description: TODO
+    * @date: 2021-05-17 16:39
+    * @param file:照片  id:照片id
+    * @return
+    */
     @PostMapping("/upload")
     public Map<String,Object> upload(@RequestParam("file") MultipartFile file,String image_id, HttpServletResponse response,HttpServletRequest req)  {
         System.out.println("开始上传");
