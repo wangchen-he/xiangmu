@@ -57,4 +57,8 @@ public class ExamAuditService  extends CommonServiceImpl<ExamAudit,String> {
         }
         return user;
     }
+
+    public List<ExamAudit> getcondition(String params){
+        return examAuditDao.getcondition(params);
+    }
 }

@@ -36,4 +36,10 @@ public class CommonCode {
         public static final Integer RECEIVE_ALL = 2;
         public static final Integer RECEIVE_PURCHASE = 3;
 
+        /**
+         * 各个id对应
+         */
+        public static  final  String adminid="000000000000000000j1";  //超级用户标识的组织id
+        public static final  String  workid="e645e783cf6f4eaaa61f7c6993252d80"; //工种id
+
 }

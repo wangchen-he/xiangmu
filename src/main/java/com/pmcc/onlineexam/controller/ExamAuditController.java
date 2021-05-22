@@ -3,12 +3,14 @@ package com.pmcc.onlineexam.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.pmcc.core.security.controller.LoginController;
+import com.pmcc.onlineexam.common.CommonCode;
 import com.pmcc.onlineexam.model.ExamAudit;
 import com.pmcc.onlineexam.model.ExamUserPicture;
 import com.pmcc.onlineexam.service.ExamAuditService;
 import com.pmcc.onlineexam.service.ExamUserPictureService;
 import com.pmcc.onlineexam.utils.GetUser;
-import com.pmcc.system.common.CommonCode;
+
+import com.pmcc.system.model.SysDep;
 import com.pmcc.system.model.SysDepRelation;
 import com.pmcc.system.model.SysDictionaries;
 import com.pmcc.system.model.SysUser;
@@ -178,7 +180,13 @@ public class ExamAuditController {
 
     }
 
-
+/**
+ * @author: 根据图片id获取图片内容
+ * @description: TODO
+ * @date: 2021-05-22 13:10
+ * @param “”图片id
+ * @return
+ */
     @GetMapping("/getimagebuid")
     public  ExamUserPicture getimagebuid(String id){
         ExamUserPicture im= examUserPictureService.findById(id);
@@ -188,9 +196,15 @@ public class ExamAuditController {
     @Autowired
     SysDictionariesService getdivt;
 
+  /**
+   * @author: 获取职称
+   * @description: TODO
+   * @date: 2021-05-22 13:12
+   * @param “无参
+   * @return
+   */
     @GetMapping("/getdict")
     public  List<SysDictionaries> getdict(){
-
 
         List<SysDictionaries> list= getdivt.getSysDictionariesByParentID("204028824c01769d16eb370021","0");
         return list;
@@ -243,13 +257,41 @@ public class ExamAuditController {
     @Autowired
     SysDepRelationService relationService;
 
+
 @GetMapping("/getTree")
-    public  String getTree(){
+      public  Object getTree(){
+    String redata="";
+     if(CommonCode.adminid.equals(getUser.getUsername().getDeptID())){
+
+          redata=depService.getTreeStr("");
 
 
-    System.out.println("00000000000000000001");
-      return   depService.getTreeStr("00000000000000000001");
-}/**
+         return   JSON.parse(String.valueOf(redata));
+     }else {
+          List<SysDep> de= depService.getDepByID(getUser.getUsername().getDeptID());
+         System.out.println("desss"+de.get(0));
+         redata="[{title: '"+de.get(0).getDepCName()+"', key: '"+de.get(0).getId()+"', isLeaf: true }]";
+         return   JSON.parse(redata);
+     }
+
+}
+
+/**
+ * @author:
+ * @description: TODO
+ * @date: 2021-05-22 13:18
+ * @param //模糊条件查询参数
+ * @return 
+ */
+
+@GetMapping("getcondition")
+    public  List<ExamAudit> getcondition( String params){
+
+    return auditService.getcondition(params);
+}
+
+
+/**
 
     //文件上传：流
     @RequestMapping("/uploadtext")

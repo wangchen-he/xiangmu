@@ -4,6 +4,7 @@ import com.pmcc.onlineexam.common.CommonCode;
 import com.pmcc.onlineexam.model.ExamQuestionBank;
 import com.pmcc.onlineexam.service.ExamQuestionBankService;
 import com.pmcc.onlineexam.utils.GetUser;
+import com.pmcc.system.model.SysDictionaries;
 import org.apache.commons.collections4.Get;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -89,7 +90,7 @@ public class ExamQuestionBankController {
        upban.setTest_content(map.get("test_content"));
        upban.setDifficult(map.get("difficult"));
         upban.setRight_answer(map.get("right_answer"));
-
+        upban.setDict_id(map.get("dict_id"));
        upban.setUpdated_by(user.getUsername().getId());
        upban.setUpdated_time(new Date());
        if("0".equals(map.get("test_type"))){
@@ -110,6 +111,19 @@ public class ExamQuestionBankController {
 
            bankService.update(upban);
        }
+
+    }
+
+    /**
+     * @author:
+     * @description: TODO
+     * @date: 2021-05-21 19:28
+     * @param “获取工种字典
+     * @return
+     */
+    @GetMapping("getdict")
+    public List<SysDictionaries> getdict(){
+        return bankService.getdict();
 
     }
 }
