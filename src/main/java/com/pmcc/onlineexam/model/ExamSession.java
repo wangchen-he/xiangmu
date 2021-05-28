@@ -67,7 +67,7 @@ private String batchId;
      * 数据状态
      */
 
-    private String delFlag;
+    private int delFlag;
     /**
      * 考试类型
      */
@@ -180,11 +180,11 @@ private String batchId;
     }
 
     @Column(name = "del_flag")
-    public String getDelFlag() {
+    public int getDelFlag() {
         return this.delFlag;
     }
 
-    public void setDelFlag(String delFlag) {
+    public void setDelFlag(int delFlag) {
         this.delFlag = delFlag;
     }
 
