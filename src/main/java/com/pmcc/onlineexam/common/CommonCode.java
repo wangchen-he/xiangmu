@@ -42,4 +42,24 @@ public class CommonCode {
         public static  final  String adminid="000000000000000000j1";  //超级用户标识的组织id
         public static final  String  workid="e645e783cf6f4eaaa61f7c6993252d80"; //工种id
 
+        /**
+         * 单选多选**/
+        public static  final  String Radino="0";  //单选
+        public static final  String  Multiple="1"; //多选
+        public static final  String  Judge="2"; //判断
+
+        /**
+         * 题型难度
+         * **/
+        public static final String Simpleness="0";  //简单
+        public static final String Ordinary="1";  //普通
+        public static final String Diff="2";  //困难
+
+
+        /**
+         * 正确错误
+        * */
+        public static final String Fl="0";
+        public static final String Tr="1";
+
 }
