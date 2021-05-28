@@ -45,7 +45,7 @@ public class ExamBatchController {
      */
     @GetMapping("/get-batch")
     public List<ExamBatch> getBatch() {
-        //获取批次列表
+        //TODO 获取批次列表
         List<ExamBatch> batchList = examBatchService.findAll();
         //获取机构人员列表-标记相应用户
         return batchList;

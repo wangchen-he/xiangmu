@@ -1,11 +1,7 @@
 /**
  * Created with IntelliJ IDEA.
  *
- * @author： 刘志星
- * @date： 2021/4/7
- * @description：
- * @modifiedBy：
- * @version: 1.0
+ * @date： 2021/5/17
  */
 
 package com.pmcc.onlineexam.service;
@@ -36,8 +32,8 @@ public class ExamSessionService extends CommonServiceImpl<ExamSession, String> {
         return examSessionDao.findBySessionIdExamBatch(pageDto);
     }
 
-    public List<ExamSession> findBySessionId(String sessionId){
-        return examSessionDao.findBySessionId(sessionId);
+    public List<ExamSession> findBySessionId(String batchId){   //获取场次数据
+        return examSessionDao.findBySessionId(batchId);
     }
 
 }

@@ -1,11 +1,6 @@
 /**
  * Created with IntelliJ IDEA.
- *
- * @author： 刘志星
- * @date： 2021/4/6
- * @description：
- * @modifiedBy：
- * @version: 1.0
+ * @date： 2021/5/17
  */
 
 package com.pmcc.onlineexam.controller;
@@ -20,17 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-/**
- *
- * @Description:
- * @param
- * @return:
- * @author: lzx
- * @Date: 2021/4/7 9:50
- */
-
 @Controller
-@RequestMapping("/exam/examsession")
+@RequestMapping("/exam/examsession")  //TODO 路由连接场次管理
 @RestController
 public class ExamSessionController {
 
@@ -53,9 +39,9 @@ public class ExamSessionController {
         return examSessionService.findById(id);
     }
 
-    @GetMapping("/queryBySessionId")
-    public List<ExamSession> findBySessionId(String sessionId){
-        return examSessionService.findBySessionId(sessionId);
+    @GetMapping("/queryBySessionId")  //TODO 场次管理把批次id传过来
+    public List<ExamSession> findBySessionId(String batchId){
+        return examSessionService.findBySessionId(batchId);
     }
 
 
@@ -83,13 +69,13 @@ public class ExamSessionController {
 
     @GetMapping("/updateBegin")
     public String updateBegin(String id){
-        ExamSession examSession = examSessionService.findById(id);
-        if(examSession.getBeginFlag()==0){
-            examSession.setBeginFlag(1);
-        }else if(examSession.getBeginFlag()==1){
-            examSession.setBeginFlag(2);
-        }else if(examSession.getBeginFlag()==2){
-            examSession.setBeginFlag(0);
+        ExamSession examSession = examSessionService.findById(id); //TODO 调用通用方法
+        if(examSession.getStartStatus()==0){
+            examSession.setStartStatus(1);
+        }else if(examSession.getStartStatus()==1){
+            examSession.setStartStatus(2);
+        }else if(examSession.getStartStatus()==2){
+            examSession.setStartStatus(0);
         }
 
         examSessionService.update(examSession);

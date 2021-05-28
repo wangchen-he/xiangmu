@@ -13,10 +13,10 @@ import java.util.Map;
 
 /**
  * @ClassName: CommonServiceImpl <br>
- * @Description: TODO 通用Service
+ * @Description: TODO
  * @Date: 2019/12/14 19:33 <br>
  * @Author: DarkBF <br>
- * @Version: 1.0 <br>
+ * @Version: 1.0 <br>通用Service
  */
 @Transactional
 public abstract class CommonServiceImpl<T, PK extends Serializable> implements ICommonService<T, PK> {
