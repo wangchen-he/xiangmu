@@ -1,9 +1,11 @@
 package com.pmcc.onlineexam.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.pmcc.core.common.model.CommonEntity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,18 +28,23 @@ public class Dict extends CommonEntity {
 
     private  String name;
     private String value;
-    private String type;
+
     private int sort;
     private int status;
-    private int del_flag;
-    private String created_by;
-    private Date created_time;
 
+    private String created_by;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8:00")
+    private Date created_time;
     private String updated_by;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8:00")
     private Date updated_time;
 
     private  String memo; //备注
-    private int date;//所属年份
+
 
     public String getName() {
         return name;
@@ -55,13 +62,6 @@ public class Dict extends CommonEntity {
         this.value = value;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public int getSort() {
         return sort;
@@ -79,13 +79,6 @@ public class Dict extends CommonEntity {
         this.status = status;
     }
 
-    public int getDel_flag() {
-        return del_flag;
-    }
-
-    public void setDel_flag(int del_flag) {
-        this.del_flag = del_flag;
-    }
 
     public String getCreated_by() {
         return created_by;
@@ -127,11 +120,18 @@ public class Dict extends CommonEntity {
         this.memo = memo;
     }
 
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int date) {
-        this.date = date;
+    @Override
+    public String toString() {
+        return "Dict{" +
+                "name='" + name + '\'' +
+                ", value='" + value + '\'' +
+                ", sort=" + sort +
+                ", status=" + status +
+                ", created_by='" + created_by + '\'' +
+                ", created_time=" + created_time +
+                ", updated_by='" + updated_by + '\'' +
+                ", updated_time=" + updated_time +
+                ", memo='" + memo + '\'' +
+                '}';
     }
 }

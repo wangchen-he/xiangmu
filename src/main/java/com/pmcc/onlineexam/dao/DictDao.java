@@ -1,14 +1,16 @@
 package com.pmcc.onlineexam.dao;
 
 import com.pmcc.core.common.dao.AbstractBaseDao;
+import com.pmcc.onlineexam.common.CommonCode;
 import com.pmcc.onlineexam.entity.PageDto;
 import com.pmcc.onlineexam.model.Dict;
 import com.pmcc.onlineexam.model.Person;
-import com.pmcc.system.common.CommonCode;
+
 import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -23,17 +25,71 @@ import java.util.List;
 @Repository
 public class DictDao extends AbstractBaseDao<Dict, String> {
 
+    public void deleteid(String id){
+        entityManager.createNativeQuery("update exam_dict set status=?1 where oid=?2")
+                .setParameter(1,CommonCode.DEL_FLAG)
+                .setParameter(2,id).executeUpdate();
+
+    }
+
+
   public List<Dict> getall(){
       CriteriaBuilder cb = entityManager.getCriteriaBuilder();
       CriteriaQuery<Dict> criteria = cb.createQuery(Dict.class);
       Root<Dict> contactRoot = criteria.from(Dict.class);
       criteria.select(contactRoot);
+      Predicate s1=cb.notEqual(contactRoot.get("status"), CommonCode.NO_AUDITO);
 
-      criteria.where(cb.equal(contactRoot.get("status"), CommonCode.STATUS_NORMAL));
+
+      criteria.where(s1);
+      criteria.orderBy(cb.asc(contactRoot.get("sort")));
 
       List<Dict> resultList = getSession().createQuery(criteria).getResultList();
       return resultList;
-  }    /**
+  }
+
+
+    public List<Dict> getdict(){
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Dict> criteria = cb.createQuery(Dict.class);
+        Root<Dict> contactRoot = criteria.from(Dict.class);
+        criteria.select(contactRoot);
+        Predicate s1=cb.equal(contactRoot.get("status"), CommonCode.STATUS_NORMAL);
+
+
+        criteria.where(s1);
+        criteria.orderBy(cb.asc(contactRoot.get("sort")));
+
+        List<Dict> resultList = getSession().createQuery(criteria).getResultList();
+        return resultList;
+    }
+
+
+    /**
+     * @author: 模糊查询
+     * @description: TODO
+     * @date: 2021-05-29 10:50
+     * @param “条件
+     * @return
+     */
+
+    public  List<Dict> getlike(String like){
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Dict> criteria = cb.createQuery(Dict.class);
+        Root<Dict> contactRoot = criteria.from(Dict.class);
+        criteria.select(contactRoot);
+
+        Predicate s1=  cb.like(contactRoot.get("name"),"%"+like+"%");
+        Predicate s2=  cb.like(contactRoot.get("value"),"%"+like+"%");
+
+        Predicate s3=cb.notEqual(contactRoot.get("status"),CommonCode.DEL_FLAG);
+        criteria.where(cb.or(s1,s2),s3);
+
+
+        criteria.orderBy(cb.asc(contactRoot.get("sort")));
+      return   getSession().createQuery(criteria).getResultList();
+    }
+  /**
      *
      * @Description ：查询exam_dict中的工种数据
      * @param pageDto

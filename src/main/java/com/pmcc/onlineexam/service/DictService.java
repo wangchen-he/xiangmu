@@ -37,6 +37,21 @@ public class DictService extends CommonServiceImpl<Dict, String> {
 
     }
 
+
+
+    public  List<Dict> getdict(){
+        return  dictDao.getdict();
+
+    }
+    public void deleteid(String id){
+        dictDao.deleteid(id);
+    }
+
+
+    public List<Dict> getlike(String like){
+      return   dictDao.getlike(like);
+    }
+
     /**
      *
      * @Description ：获取当前页里的工种数据

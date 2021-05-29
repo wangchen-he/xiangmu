@@ -260,20 +260,30 @@ public class ExamAuditController {
 
 @GetMapping("/getTree")
       public  Object getTree(){
-    String redata="";
-     if(CommonCode.adminid.equals(getUser.getUsername().getDeptID())){
+//    String redata="";
+//     if(CommonCode.adminid.equals(getUser.getUsername().getDeptID())){
+//
+//          redata=depService.getTreeStr("");
+//
+//
+//         return   JSON.parse(String.valueOf(redata));
+//     }else {
+//          List<SysDep> de= depService.getDepByID(getUser.getUsername().getDeptID());
+//         System.out.println("desss"+de.get(0));
+//         redata="[{title: '"+de.get(0).getDepCName()+"', key: '"+de.get(0).getId()+"', isLeaf: true }]";
+//         return   JSON.parse(redata);
+//     }
 
-          redata=depService.getTreeStr("");
+    Map map=new HashMap<String,Object>();
+    map.put("depid",getUser.getUsername().getDeptID());
+    List<SysDepRelation> byField = relationService.findByField(map);
+    SysDepRelation dep=  byField.get(0);
 
-
-         return   JSON.parse(String.valueOf(redata));
-     }else {
-          List<SysDep> de= depService.getDepByID(getUser.getUsername().getDeptID());
-         System.out.println("desss"+de.get(0));
-         redata="[{title: '"+de.get(0).getDepCName()+"', key: '"+de.get(0).getId()+"', isLeaf: true }]";
-         return   JSON.parse(redata);
-     }
-
+    String pid= dep.getDepid();
+//
+    String treeStr = depService.getTreeStr(pid);
+    System.out.println(treeStr+"11111");
+    return   JSON.parse(treeStr);
 }
 
 /**

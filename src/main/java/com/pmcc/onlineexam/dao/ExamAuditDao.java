@@ -140,8 +140,6 @@ public class ExamAuditDao extends AbstractBaseDao<ExamAudit, String> {
         Root<ExamAudit> contactRoot = criteria.from(ExamAudit.class);
         criteria.select(contactRoot);
 
-
-
         Predicate s1=cb.like(contactRoot.get("name"),"%"+params+"%");
         Predicate s2=cb.equal(contactRoot.get("depid"),user.getDeptID());
         if(CommonCode.adminid.equals(user.getDeptID())){
