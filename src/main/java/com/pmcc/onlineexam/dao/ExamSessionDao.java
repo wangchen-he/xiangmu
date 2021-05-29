@@ -1,8 +1,7 @@
 /**
  * Created with IntelliJ IDEA.
  *
- * @author： 刘志星
- * @date： 2021/4/7
+ * @date： 2021/5/18
  * @description：
  * @modifiedBy：
  * @version: 1.0
@@ -14,6 +13,7 @@ import com.pmcc.core.common.dao.AbstractBaseDao;
 import com.pmcc.core.constant.CommonConstant;
 import com.pmcc.onlineexam.entity.PageDto;
 import com.pmcc.onlineexam.model.ExamSession;
+import com.pmcc.system.common.CommonCode;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
@@ -36,17 +36,20 @@ public class ExamSessionDao extends AbstractBaseDao<ExamSession, String> {
                 //select * from exam_batch where del_flag !=?1 order by begin_date offset ?2 row fetch next ?3 row only
                 //select * from exam_batch where del_flag !=?1 limit ?2,?3
                 .createNativeQuery("select * from exam_session where del_flag !=?1 order by sort_no offset ?2 row fetch next ?3 row only", ExamSession.class)
-                .setParameter(1, CommonConstant.DEL_FLAG)
+                .setParameter(1, CommonCode.DEL_FLAG)
                 .setParameter(2, start)
                 .setParameter(3, size);
         pageDto.setList(query.getResultList());
         return pageDto;
     }
 
-    public List<ExamSession> findBySessionId(String sessionId){
-        Query query = entityManager.createNativeQuery("select * from exam_session where del_flag != ?1 and session_id = ?2 order by sort_no", ExamSession.class)
-                .setParameter(1, CommonConstant.DEL_FLAG)
-                .setParameter(2, sessionId);
+    public List<ExamSession> findBySessionId(String batchId){  //TODO 场次数据查询SQL
+//        Query query = entityManager.createNativeQuery("select * from exam_session where del_flag != ?1 and batch_id = ?2 order by sort_no", ExamSession.class)
+//                .setParameter(1, CommonCode.DEL_FLAG)
+//                .setParameter(2, batchId);
+        Query query = entityManager.createNativeQuery("select * from exam_session where del_flag != ?1 and batch_id = ?2", ExamSession.class)
+                .setParameter(1, CommonCode.DEL_FLAG)
+                .setParameter(2, batchId);
 
         List<ExamSession> resultList = query.getResultList();
         return resultList;

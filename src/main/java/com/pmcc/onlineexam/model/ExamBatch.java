@@ -2,12 +2,15 @@ package com.pmcc.onlineexam.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.pmcc.core.common.model.CommonEntity;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.Year;
 import java.util.Date;
 
 /**
@@ -18,6 +21,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "exam_batch")
+@NoArgsConstructor
+@AllArgsConstructor
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class ExamBatch extends CommonEntity {
     private static final long serialVersionUID = 1L;
@@ -31,6 +36,10 @@ public class ExamBatch extends CommonEntity {
     private String workType;
 
     private String sessionType;
+
+    private String operateSite;
+
+    private Date operateDate;
 
     private Date beginTime;
 
@@ -51,16 +60,10 @@ public class ExamBatch extends CommonEntity {
 
     private Date updatedTime;
 
+    private int delflag;
+
     private String memo;
 
-//    @Column(name = "exam_address")
-//    public String getExamAddress() {
-//        return this.examAddress;
-//    }
-//
-//    public void setExamAddress(String examAddress) {
-//        this.examAddress = examAddress;
-//    }
 
 //    public String getTicketFlagShow() {
 //        if ("0".equals(this.ticketFlag)) {
@@ -96,6 +99,7 @@ public class ExamBatch extends CommonEntity {
         this.name = name;
     }
 
+    @JsonFormat(pattern="yyyy",timezone = "GMT+8")
     @Column(name = "years")
     public String getYears() {
         return this.years;
@@ -128,6 +132,21 @@ public class ExamBatch extends CommonEntity {
     public void setSessionType(String sessionType) {
         this.sessionType = sessionType;
     }
+
+    @Column(name = "operate_site")
+    public String getOperateSite() {
+        return this.operateSite;
+    }
+    public void setOperateSite(String operateSite) {
+        this.operateSite = operateSite;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @Column(name = "operate_date")
+    public Date getOperateDate() {
+        return this.operateDate;
+    }
+    public void setOperateDate(Date operateDate) { this.operateDate = operateDate; }
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Column(name = "begin_time")
@@ -195,7 +214,7 @@ public class ExamBatch extends CommonEntity {
         this.updatedBy = updatedBy;
     }
 
-        @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Column(name = "updated_time")
     public Date getUpdatedTime() {
         return this.updatedTime;
@@ -203,6 +222,15 @@ public class ExamBatch extends CommonEntity {
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
     }
+
+    @Column(name = "del_flag")
+    public int getDelFlag() {
+        return delflag;
+    }
+    public void setDelFlag(int delflag) {
+        this.delflag = delflag;
+    }
+
 
     @Column(name = "memo")
     public String getMemo() {
@@ -223,14 +251,7 @@ public class ExamBatch extends CommonEntity {
 
 
 
-//    @Column(name = "del_flag")
-//    public String getDelFlag() {
-//        return this.delFlag;
-//    }
-//
-//    public void setDelFlag(String delFlag) {
-//        this.delFlag = delFlag;
-//    }
+
 //
 //    @Column(name = "session_state")
 //    public int getSessionState() {
@@ -280,24 +301,14 @@ public class ExamBatch extends CommonEntity {
 //    public int getIsScoreView() {
 //        return this.isScoreView;
 //    }
-//
 //    public void setIsScoreView(int isScoreView) {
 //        this.isScoreView = isScoreView;
 //    }
-//
-//    @Column(name = "session_type")
-//    public String getSessionType() {
-//        return this.sessionType;
-//    }
-//
-//    public void setSessionType(String sessionType) {
-//        this.sessionType = sessionType;
-//    }
+
 
 //    public String getScoreView() {
 //        return this.scoreView;
 //    }
-//
 //    public void setScoreView(String scoreView) {
 //        this.scoreView = scoreView;
 //    }

@@ -15,13 +15,20 @@ import com.pmcc.core.common.service.CommonServiceImpl;
 import com.pmcc.onlineexam.dao.ExamBatchDao;
 import com.pmcc.onlineexam.entity.PageDto;
 import com.pmcc.onlineexam.model.ExamBatch;
+import com.pmcc.onlineexam.model.ExamSession;
+import com.pmcc.onlineexam.model.Person;
+import com.pmcc.system.model.SysDepRelation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 
 @Service
+@Transactional
 public class ExamBatchService extends CommonServiceImpl<ExamBatch,String> {
 
     @Autowired
@@ -42,7 +49,13 @@ public class ExamBatchService extends CommonServiceImpl<ExamBatch,String> {
     /**
      * 根据批次列表
      */
-    public List<ExamBatch> getBatch(){
-        return examBatchDao.getbatch();
+    public List<ExamBatch> GetBatch(){
+        return examBatchDao.Getbatch();
+    }
+    /**
+     * 查询
+     */
+    public List<ExamBatch> conditionQuery(String name, String sessionType, Date testDatestare,Date testDateend,Date beginTimestare,Date beginTimeend,Date endTimestare,Date endTimeend) {
+        return examBatchDao.conditionQuery(name, sessionType,testDatestare,testDateend,beginTimestare,beginTimeend,endTimestare,endTimeend);
     }
 }
